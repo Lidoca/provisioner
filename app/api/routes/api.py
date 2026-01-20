@@ -165,7 +165,7 @@ async def start_vm(node: str, vmid: int, vm_name: str):
         proxmox.nodes(node).qemu(vmid).status.start.post()
         logger.info("VM %s(%s) started on %s", vm_name, vmid, node)
     except Exception as e:
-        logger.error("Failed to start VM %s(%s): %s", vm_name, vmid, e)
+        raise HTTPException(500, f"VM start failed: {e}") from e
 
 
 @router.get("/nodes")
