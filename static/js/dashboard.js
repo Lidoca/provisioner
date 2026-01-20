@@ -112,6 +112,7 @@ async function loadVms() {
   } catch (error) {
     document.getElementById("vmList").innerHTML =
       '<div style="color: #ef4444">목록 로드 실패</div>';
+    console.error(error);
   }
 }
 
