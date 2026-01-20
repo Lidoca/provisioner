@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VM Provisioning Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>🚀 VM Provisioning Dashboard</h1>
+        <p>Proxmox VM 셀프서비스 프로비저닝</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="card">
+        <div class="stats" id="stats">
+          <div class="stat-card">
+            <div id="total-vms">0</div>
+            <div>총 VM</div>
+          </div>
+          <div class="stat-card">
+            <div id="running-vms">0</div>
+            <div>실행중</div>
+          </div>
+          <div class="stat-card">
+            <div id="stopped-vms">0</div>
+            <div>중지</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VM Form -->
+      <div class="card">
+        <h2>새 VM 생성</h2>
+        <form id="vmForm">
+          <div class="form-group">
+            <label
+              >노드 존 <small id="nodeStatus" style="color: #10b981"></small
+            ></label>
+            <select name="node_zone" id="nodeZoneSelect"></select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>vCPU</label>
+              <input name="vcpu" type="number" value="1" min="1" max="16" />
+            </div>
+            <div class="form-group">
+              <label>RAM (MB)</label>
+              <input
+                name="memory"
+                type="number"
+                value="1024"
+                min="1024"
+                max="24576"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>디스크 (GB)</label>
+            <input name="resize" type="number" value="20" min="10" max="100" />
+          </div>
+          <div class="form-group">
+            <label>VM 이름</label>
+            <input name="vm_name" placeholder="my-web-vm" />
+          </div>
+          <button type="submit" id="submitBtn">VM 생성 시작</button>
+          <div class="loading" id="loading">VM 생성 중입니다... ⏳</div>
+        </form>
+      </div>
+
+      <!-- VM List -->
+      <div class="card">
+        <div class="list-header">
+          <h2>📋 VM 목록 (<span id="vm-count">0</span>)</h2>
+          <button class="refresh-btn" onclick="loadVms()">🔄 새로고침</button>
+        </div>
+        <div class="vm-list" id="vmList">VM 목록을 불러오는 중...</div>
+      </div>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+  </body>
+</html>
