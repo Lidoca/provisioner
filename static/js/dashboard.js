@@ -99,7 +99,7 @@ async function loadVms() {
                 <span class="vm-status status-${getStatusClass(vm.status)}">
                   ${vm.status}
                 </span>
-                ${vm.mem ? `<span style="margin-left: 12px">${vm.mem}MB</span>` : ""}
+                ${vm.mem ? `<span style="margin-left: 12px">${Math.round(vm.mem / Math.pow(1024, 2))}MB</span>` : ""}
               </div>
             </div>
             `,
